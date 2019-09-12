@@ -42,33 +42,33 @@ Objects of Teacher{
 Function of Teacher{
 	login;
 	search Courses basing on parameters(term, subject, teacherID, teacherName);
-	Opening a course;
-	Closing a course;
+	Open a course;
+	Close a course;
 }
 ------------------------------------------------------------------------------------
 
-Objects of Course{
+Objects of CourseSystem{
 	Course.number;
 	Course.name;
 	Course.introduction;
 	Course.credit;
 	Course.teacher;
 	Course.schedule;
-	Course.courseroomNumber;
+	Course.courseRoomNumber;
 	Course.capacity;
 	Course.seatRemain;	
 }
 
-Function of Course{
+Function of CourseSystem{
 	create;
 	delete;
 	search basing on Parameters(number, name);
-	modify basing on parameters(schedule, teacher, courseroomNumber);
+	modify basing on parameters(schedule, teacher, courseRoomNumber);
 }
 ------------------------------------------------------------------------------------
 class CourseSystem //set by system manager;
-Behaviour: initiate(username, studentOrteacher); {
-	if (studentOrteacher == 0) { //for student
+Behaviour: initiate(username, studentOrTeacher); {
+	if (studentOrTeacher == 0) { // 0 means student
 		Set {Student.ID;
 			Student.name;
 			Student.username;
@@ -86,6 +86,7 @@ Behaviour: initiate(username, studentOrteacher); {
 			Teacher.email;}
 		to database;
 	}
+	return "new account creates successfully";
 }
 Behaviour: createCourse(List<course> Course){
 	set {	course.number;
@@ -94,52 +95,60 @@ Behaviour: createCourse(List<course> Course){
 		Course.credit;
 		Course.teacher;
 		Course.schedule;	
-		Course.courseroomNumber;
+		Course.courseRoomNumber;
 		Course.capacity;
 		Course.seatRemain;}
 	to database;
+	return "new course creates successfully";
 }
-Behaviour: searchCourse(parameter)
-	search course basing on parameter from databases
+Behaviour: searchCourse(parameters){
+	Inquire course basing on parameters from database
 	return List<Course> course;
+}
 
-Behaviour: registerCourse(parameter)
-	register for course basing on parameter from databases
-	return List<Course> course;
+Behaviour: registerCourse(parameters){
+	register for course basing on parameters from database
+	return "register success;
+}
 			
-Behaviour: dropCourse(parameter)
-	drop course basing on parameter from databases
+Behaviour: dropCourse(parameters){
+	searchCourse(parameter);
+	drop course basing on parameters from database
 	return "drop success";
+}
 			
-Behaviour: deleteCourse(parameter)
-	searchCourse(parameter)
-	delete course basing on parameter from databases
+Behaviour: deleteCourse(parameters){
+	searchCourse(parameter);
+	delete course basing on parameters from database
 	return "delete success";
+}
 
-Behaviour: modifyCourse(parameter)	
-	ModifyCourse(parameter)
-	modify course basing on parameter from databases
+Behaviour: modifyCourse(parameters){
+	searchCourse(parameter);
+	modify course basing on parameters from database
 	return "modify success";
+}
 ------------------------------------------------------------------------------------		
 	
-public class AccountRegister //for both students and teachers
+public class AccountService //for both students and teachers
 State: email, username, password;
-Behaviour: accountRegister(email, username, password)
+Behaviour: accountRegister(email, username, password){
 	switch(student or teacher form email)
 	if (student)
 		List<Student> student = courseSystem.initiate(username, 0); // 0 on behalf of student
 	else 
 		List<Teacher> teacher = courseSystem.initiate(username, 1); // 1 on behalf of teacher
+	return "register success";
+}
 
-public class Identification //for both students and teachers
-State: username, password;
 Behaviour: login(username, password){
 	if (username is valid && password is valid) {
 		return "login in Success"; 
 		switch(student or teacher)
 		//access to related system and distribute related function;
 	}else 
-		return "login in Fail";
+		return "username or password is not valid, login in Fail";
+}
 
 public class Searchcourse //for both students and teachers
 State: term, subject, courseNumber, courseName, teacherID, teacherName;
@@ -160,9 +169,9 @@ private class Student
 State: username,password,term,subject,email;
 Behaviour: login(){
 	if (first login in) {
-		AccountRegister.accountRegister(email, username, password);
+		AccountService.accountRegister(email, username, password);
 	}else {
-		Identification.login(username,password);
+		AccountService.login(username,password);
 	}
 }
 
@@ -184,9 +193,9 @@ private class teacher
 state: username, password, term, subject, email
 Behaviour: login(){
 	if (first login in) {
-		AccountRegister.accountRegister(email, username, password);
+		AccountService.accountRegister(email, username, password);
 	}else {
-		Identification.login(username,password);
+		AccountService.login(username,password);
 	}
 
 Behaviour: OpenCourse(term, subject){
