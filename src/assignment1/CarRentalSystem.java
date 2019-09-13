@@ -132,7 +132,7 @@ Behaviour: returnCar(car.number){
 }
 }
 
-public class AccountService // for both renter and client
+public class AccountService{ // for both renter and client
 state: email, username, password;
 Behaviour: accountRegister(email, username, password){
 	switch(renter or client)
@@ -147,11 +147,12 @@ Behaviour: accountRegister(email, username, password){
 Behaviour: login(username, password){
 	if (username is valid && password is valid) {
 		return "login in success";
-	}else
+	}els
 		return "username or password is not valid, login in fail";
 }
+}
 
-public class creditCardService
+public class creditCardService{
 state: cardNumber, ExpireDate, NameOfCard, CVV
 Behaviour: identifyCard(cardNumber, ExpireDate, NameOfCard, CVV){
 	if (cardNumber matched NameOfcard and CVV) {
@@ -168,8 +169,9 @@ Behaviour: checkout(price, cardNumber){
 	if (identifyCard(cardNumber).equal("add a card successfully") && price < card.balance;)	
 			return "checkout approved";
 }
+}
 
-private class renter
+private class renter{
 state: username, password, email;
 Behaviour: login(){
 	if (first login in) {
@@ -195,8 +197,9 @@ Behaviour: confirmReturnRequested(){
 		System.out.println("return the car approved");
 	}
 }
+}
 
-private class client
+private class client{
 state: 	username, password, license, phoneNumber, email;
 Behaviour: login(){
 	if (first login in) {
@@ -227,11 +230,14 @@ Behaviour: returnOrder(username){
 	RentalSystem.returnCar;
 }
 
-Behaviour: PayOrder(orderNumber);
+Behaviour: PayOrder(orderNumber){
 	List<Car> carInfo = reviewOrder(username);
 	System.out.println(carInfo.price);
 	//client pay money according carInfo.price;
 	creditCardService.identifyCard;
+}
+
+}
 
 
 

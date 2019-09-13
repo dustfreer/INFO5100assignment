@@ -66,7 +66,7 @@ Function of CourseSystem{
 	modify basing on parameters(schedule, teacher, courseRoomNumber);
 }
 ------------------------------------------------------------------------------------
-class CourseSystem //set by system manager;
+class CourseSystem{ //set by system manager;
 Behaviour: initiate(username, studentOrTeacher); {
 	if (studentOrTeacher == 0) { // 0 means student
 		Set {Student.ID;
@@ -88,6 +88,7 @@ Behaviour: initiate(username, studentOrTeacher); {
 	}
 	return "new account creates successfully";
 }
+
 Behaviour: createCourse(List<course> Course){
 	set {	course.number;
 		Course.name;
@@ -101,6 +102,7 @@ Behaviour: createCourse(List<course> Course){
 	to database;
 	return "new course creates successfully";
 }
+
 Behaviour: searchCourse(parameters){
 	Inquire course basing on parameters from database
 	return List<Course> course;
@@ -128,9 +130,10 @@ Behaviour: modifyCourse(parameters){
 	modify course basing on parameters from database
 	return "modify success";
 }
+}
 ------------------------------------------------------------------------------------		
 	
-public class AccountService //for both students and teachers
+public class AccountService{ //for both students and teachers
 State: email, username, password;
 Behaviour: accountRegister(email, username, password){
 	switch(student or teacher form email)
@@ -149,8 +152,9 @@ Behaviour: login(username, password){
 	}else 
 		return "username or password is not valid, login in Fail";
 }
+}
 
-public class Searchcourse //for both students and teachers
+public class Searchcourse{ //for both students and teachers
 State: term, subject, courseNumber, courseName, teacherID, teacherName;
 Behaviour: searchcourseForStudent(term, subject){
 	Switch(term or subject)
@@ -164,8 +168,9 @@ Behaviour: searchcourseForTeacher(term, subject, teacherID, teacherName){
 		List<Course> course = courseSystem.searchCourse(searchParams, 1);// 1 on behalf of teacher
 		//display related information of the course to teacher
 }
+}
 	
-private class Student
+private class Student{
 State: username,password,term,subject,email;
 Behaviour: login(){
 	if (first login in) {
@@ -189,8 +194,8 @@ Behaviour: dropCourse(courseNumber){
 }
 }
 
-private class teacher
-state: username, password, term, subject, email
+private class teacher{
+State: username, password, term, subject, email
 Behaviour: login(){
 	if (first login in) {
 		AccountService.accountRegister(email, username, password);
@@ -212,6 +217,7 @@ Behaviour: CloseCourse(term, subject){
 			CourseSystem.closeCourse;
 		}
 	}
+}
 }
 
 
