@@ -7,8 +7,8 @@ package assignment1;
 
 Object of System{
 	Rentalservice;
-	renter;
-	client;
+	Renter;
+	Client;
 }
 ------------------------------------------------------------------------------------
 
@@ -67,7 +67,7 @@ Function of Client{
 ------------------------------------------------------------------------------------
 
 Class RentalSystem{
-Behaviour: initiate(username, renterOrClient){
+Behaviour: initiate(List, renterOrClient){
 	if (renterOrClient == 0) {// 0 means renter;
 		set {Renter.username;
 			Renter.password;
@@ -137,9 +137,9 @@ state: email, username, password;
 Behaviour: accountRegister(email, username, password){
 	switch(renter or client)
 	if (renter) {
-		List<Renter> renter = RentalSystem.initiate(username, 0); // 0 means renter;
+		RentalSystem.initiate(List<Renter> renter, 0); // 0 means renter;
 	}else {
-		List<client> client = RentalSystem.initiate(username, 1); // 1 means client;
+		RentalSystem.initiate(List<Client> client, 1); // 1 means client;
 	}
 	return "register success";
 }

@@ -95,7 +95,7 @@ Behaviour: registerMember(accountname, password){
 	set{consumer.accountname
 		consumer.password		
 	}to database;
-	set consumer.isMember = 1; //1 means members;
+	set consumer.isMember = true; 
 }
 
 Behaviour: topUpService(value, balance){
