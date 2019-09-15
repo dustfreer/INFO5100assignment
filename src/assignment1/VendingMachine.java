@@ -73,11 +73,11 @@ Behaviour: checkout(price, cardNumber){
 }
 }
 
-public class cashService{
-State: cashValue, totalValue, cashNumber;
-Behaviour: checkout(totalValue, cashValue, cashNumber){
+public class cashOrCoinService{
+State: cashOrCoinValue, totalValue, cashOrCoinNumber;
+Behaviour: checkout(totalValue, cashOrCoinValue, cashOrCoinNumber){
 	double tax = 0.1; // assume tax is 10%.
-	balance = totalValue - cashValue * cashNumber * ( 1 + tax);
+	balance = totalValue - cashOrCoinValue * cashOrCoinNumber * ( 1 + tax);
 	if (balance != 0) {
 		changefund;
 	}else {
@@ -139,7 +139,7 @@ Behaviour: settingGoods(Goods.exirationDate, Goods.quantity){
 Behaviour: sellGoods(Goods.number){
 	push Goods out of basket base of goods.number;
 	int price = Goods.prices;
-	switch (creditService.checkout or cashService.checkout or memberService.checkout)
+	switch (creditService.checkout or cashOrCoinService.checkout or memberService.checkout)
 	//according to the kind of payment to pay the bill;
 	Goods.quantity --;
 }

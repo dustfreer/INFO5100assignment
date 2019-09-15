@@ -52,7 +52,7 @@ Class TrafficControllerService{
 Behaviour: changeTrafficLightColor(TrafficLight.color, TrafficLight.time){
 	turn on timer;
 	whilt(true){ 		
-		if (color == "green" && time > 30s) {
+		if (color == "green" && time > 30s) { // assume green light keeps 30s;
 			TrafficLight.color = "yellow";
 			timer = 0;
 			continue;
@@ -63,7 +63,7 @@ Behaviour: changeTrafficLightColor(TrafficLight.color, TrafficLight.time){
 			timer = 0;
 			continue;
 		}
-		if (color == "red" && time > 40s) {
+		if (color == "red" && time > 40s) { // assume red light keeps 40s;
 			TrafficLight.color = "green";
 			TrafficLightForPedestrian.type = "stop"; //set light in the corner for pedestrians;
 			timer = 0;

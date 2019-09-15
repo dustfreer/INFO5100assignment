@@ -25,9 +25,9 @@ Objects of Student{
 }
 Function of Student{ 
 	login;
-	search Courses basing on parameters(term, subject, courseNumber, courseName);
-	register for Courses;
-	drop Courses;
+	search; //search courses basing on parameters(term, subject, courseNumber, courseName);
+	register; //register for Courses;
+	drop; //drop courses;
 }
 ------------------------------------------------------------------------------------
 
@@ -41,9 +41,9 @@ Objects of Teacher{
 }
 Function of Teacher{
 	login;
-	search Courses basing on parameters(term, subject, teacherID, teacherName);
-	Open a course;
-	Close a course;
+	search; //search courses basing on parameters(term, subject, teacherID, teacherName);
+	Open; //open a course;
+	Close; // close a course;
 }
 ------------------------------------------------------------------------------------
 
@@ -60,10 +60,12 @@ Objects of CourseSystem{
 }
 
 Function of CourseSystem{
-	create;
-	delete;
-	search basing on Parameters(number, name);
-	modify basing on parameters(schedule, teacher, courseRoomNumber);
+	createCourse;
+	searchCourse;
+	registerCourse;
+	deleteCourse;
+	modifyCourse;
+	dropCourse
 }
 ------------------------------------------------------------------------------------
 class CourseSystem{ //set by system manager;

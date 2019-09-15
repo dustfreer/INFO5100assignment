@@ -13,10 +13,10 @@ Object of System{
 ------------------------------------------------------------------------------------
 
 Object of Rentalservice{
-	Car.number; //license number;
+	Car.licensePlate; 
 	Car.model;
 	Car.colour;
-	Car.Status; // check car is avaliable(int): 0 means available, 1 means rented, 2 means repair
+	Car.state; // check car is avaliable(int): 0 means available, 1 means rented, 2 means repair
 	Car.priceForRent;
 	Car.nameOfClient;
 	
@@ -26,7 +26,7 @@ Function of Rentalservice{
 	registerAccount;
 	createInformation;
 	rentCar;
-	CheckCar;
+	CheckCar; //when cars are returned back, check the state of cars
 	returnCar;
 	CreditCardService;
 	
@@ -85,10 +85,10 @@ Behaviour: initiate(List, renterOrClient){
 }
 
 Behaviour: createInformation(List<Car> car){
-	set {Car.number; //license number;
+	set {Car.licensePlate;
 		Car.model;
 		Car.colour;
-		Car.Status; // check car is avaliable(int): 0 means available, 1 means rented, 2 means repair
+		Car.state; // check car is avaliable(int): 0 means available, 1 means rented, 2 means repair
 		Car.priceForRent;
 		Car.nameOfClient;}
 	to database;
@@ -100,33 +100,33 @@ Behaviour: searchCar(parameters){
 	return List<Car> car;
 }
 
-Behaviour: rentCar(client.license, car.number){
-	searchCar(car.number);
-	//get car.status;
-	if(client.license is qualified && car.status == 0) {
+Behaviour: rentCar(client.license, car.licensePlate){
+	searchCar(car.licensePlate);
+	//get car.state;
+	if(client.license is qualified && car.state == 0) {
 		//rentCar;
-		change car.status to 1;
+		change car.state to 1;
 		return "rent car successfully";
 	}else if ( client.license is not qualifited) {
 		return "rentCar fail";
-	}else if ( car.status == 2) {
+	}else if ( car.state == 2) {
 		return "car is not availabel";
 	}
 }
 
-Behaviour: checkCar(car.number){
-	searchCar(car.number);
-	check the status of a return car;
-	if (car.status is great) {
-		car.status = 0;
+Behaviour: checkCar(car.licensePlate){
+	searchCar(car.licensePlate);
+	check the state of a return car;
+	if (car.state is great) {
+		car.state = 0;
 	}else 
-		car.status = 2;
-	return car.status;
+		car.state = 2;
+	return car.state;
 }
 
-Behaviour: returnCar(car.number){
-	int status = checkCar(number);
-	if (status == 0) {
+Behaviour: returnCar(car.licensePlate){
+	int state = checkCar(licensePlate);
+	if (state == 0) {
 		return "return a car successfully"
 	}
 }
@@ -181,10 +181,10 @@ Behaviour: login(){
 	}
 }
 
-Behaviour: confirmOrder(Car.number){
-	int status = RentalSystem.checkCar(Car.number));
-	String isOk = RentalSystem.rentCar(client.license, car.number);
-	if (status == 0) {
+Behaviour: confirmOrder(Car.licensePlate){
+	int state = RentalSystem.checkCar(Car.licensePlate));
+	String isOk = RentalSystem.rentCar(client.license, car.licensePlate);
+	if (state == 0) {
 		if (isOK.equal("rent car successfully"))
 			System.out.println("order approved");
 	}
@@ -192,8 +192,8 @@ Behaviour: confirmOrder(Car.number){
 }
 
 Behaviour: confirmReturnRequested(){
-	int status = RentalSystem.checkCar(Car.number));
-	if (status == 0) {
+	int state = RentalSystem.checkCar(Car.licensePlate));
+	if (state == 0) {
 		System.out.println("return the car approved");
 	}
 }
@@ -211,7 +211,7 @@ Behaviour: login(){
 
 Behaviour: rentCar(license){
 	List<Car> carInfo = searchCar basing on parameters;
-	RentalSystem.rentCar(carInfo.number);
+	RentalSystem.rentCar(carInfo.licensePlate);
 }
 
 Behaviour: reviewOrder(username){
@@ -222,7 +222,7 @@ Behaviour: reviewOrder(username){
 	
 Behaviour: cancleOrder(username){
 	List<Car> carInfo = reviewOrder(username);
-	set carInfo.status = 0;
+	set carInfo.state = 0;
 }
 	
 Behaviour: returnOrder(username){
