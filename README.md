@@ -1,1 +1,1 @@
-the assignment1 is located in src/assignment1/
+the assignment* is located in src/assignment*/
