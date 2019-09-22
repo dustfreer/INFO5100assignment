@@ -1,17 +1,15 @@
 package Assignment2;
 
-import Test.test.Employee;
-
 /**
- * Submit it on or before 22nd September 2019 , 12:00 pm
+ * Designed by Kai Tian;
  */
 public class Assignment2 {
 	
 	class Employee{
-		int ID;
-		String name;
-		int age;
-		double salary;
+		private int ID;
+		private String name;
+		private int age;
+		private double salary;
 		
 		
 		public String getFirstName(Employee employee) {
@@ -178,7 +176,7 @@ public class Assignment2 {
          for (int i = 0; i < employeesStr.length; i++) {
          	String[] str = employeesStr[i].split(",", 0);
          	employees[i].ID = Integer.valueOf(str[0]);
-         	employees[i].name = str[1];
+         	employees[i].name = str[1]; // I define name in class employee, and a new method getFirstName;
          	employees[i].age = Integer.valueOf(str[2]);
          	employees[i].salary = Double.valueOf(str[3]);
          }
