@@ -1,29 +1,12 @@
-package Assignment2;
+package assignment2;
+
+import assignment2.Employee;
 
 /**
  * Designed by Kai Tian;
  */
-public class Assignment2 {
-	
-	class Employee{
-		private int ID;
-		private String name;
-		private int age;
-		private double salary;
-		
-		
-		public String getFirstName(Employee employee) {
-			String str = employee.name;
-			String[] splitStr = str.split(" ", 3); // split the name into 3 part: FirstName, MiddleName, LastName;
-			return splitStr[0];
-		}
-		
-		public void raiseSalary(Employee employee, double byPercent) {
-			employee.salary = salary * byPercent;
-		}
-		
-	}
-	
+
+public class assignment2 {
 	
     /*
         This method should return the sum of salaries of employees having salary greater than 5000
@@ -32,9 +15,10 @@ public class Assignment2 {
     public double salaryGreaterThanFiveThousand(Employee[] employees) {
         // @TODO
     	double sum = 0.0;
+    	
     	for (int i = 0; i < employees.length; i++) {
-    		if(employees[i].salary > 5000.0)
-    			sum = sum + employees[i].salary;
+    		if(employees[i].getSalary() > 5000.0)
+    			sum = sum + employees[i].getSalary();
     	}
         return sum;
     }
@@ -48,11 +32,12 @@ public class Assignment2 {
      */
     public void fizzBuzz(Employee employee) {
         // @TODO
-    	if (employee.ID % 3 == 0)
+    	int ID = employee.getID();
+    	if (ID % 3 == 0)
     		System.out.println("Fizz");
-    	else if (employee.ID % 5 == 0)
+    	else if (ID % 5 == 0)
     		System.out.println("Buzz");
-    	else if (employee.ID % 5 == 0 && employee.ID % 3 == 0)
+    	else if (ID % 5 == 0 && ID % 3 == 0)
     		System.out.println("FizzBuzz");
     	else 
     		System.out.println("");
@@ -68,12 +53,13 @@ public class Assignment2 {
     public double calculateTax(Employee employee) {
         // @TODO
     	double tax;
-    	if (employee.salary <= 2500.0)
-    		tax = employee.salary * 0.1;
-    	else if (employee.salary <= 5000.0 && employee.salary > 2500.0)
-    		tax = employee.salary * 0.25;
+    	double salary = employee.getSalary();
+    	if (salary <= 2500.0)
+    		tax = salary * 0.1;
+    	else if (salary <= 5000.0 && salary > 2500.0)
+    		tax = salary * 0.25;
     	else
-    		tax = employee.salary * 0.35;
+    		tax = salary * 0.35;
         return tax;
     }
     
@@ -85,10 +71,13 @@ public class Assignment2 {
     public void swap(Employee firstEmployee, Employee secondEmployee) {
         // @TODO
     	double temp;
-    	temp = firstEmployee.salary;
-    	firstEmployee.salary = secondEmployee.salary;
-    	secondEmployee.salary = temp;
-    
+    	double firstSalary = firstEmployee.getSalary();
+    	double SecondSalary = secondEmployee.getSalary();
+    	temp = firstSalary;
+    	firstSalary = SecondSalary;
+    	SecondSalary = temp;
+    	firstEmployee.setSalary(firstSalary);
+    	secondEmployee.setSalary(SecondSalary);
     }
 
     
@@ -100,7 +89,7 @@ public class Assignment2 {
         // @TODO
     	int count = 0;
     	for (int i = 0; i < employees.length; i++) {
-    		if (employees[i].age > 50)
+    		if (employees[i].getAge() > 50)
     			count++;
     	}
         return count;
@@ -114,12 +103,12 @@ public class Assignment2 {
      */
     public void reverseFirstName(Employee employee) {
         // @TODO
-    	String firstName = employee.getFirstName(employee);
+    	String firstName = employee.getFirstName();
     	char[] char1 = firstName.toCharArray();
     	StringBuffer reverseName = new StringBuffer();
     	for( int i = char1.length-1; i >= 0; i-- )
     		reverseName.append(char1[i]);
-    	
+    	employee.setFirstName(reverseName.toString());
     }
 
     
@@ -131,7 +120,7 @@ public class Assignment2 {
      */
     public void isContainDigit(Employee employee) {
         // @TODO
-    	String firstName = employee.getFirstName(employee);
+    	String firstName = employee.getFirstName();
     	char[] char1 = firstName.toCharArray();
     	int digitNumber = 0;
     	for(int i = 0; i< char1.length; i++) {
@@ -154,7 +143,7 @@ public class Assignment2 {
      */
     public void tripleSalary(Employee employee) {
         // @TODO
-    	employee.raiseSalary(employee, 3.0);
+    	employee.raiseSalary(3.0);
     }
     
     
@@ -175,10 +164,10 @@ public class Assignment2 {
          // @TODO
          for (int i = 0; i < employeesStr.length; i++) {
          	String[] str = employeesStr[i].split(",", 0);
-         	employees[i].ID = Integer.valueOf(str[0]);
-         	employees[i].name = str[1]; // I define name in class employee, and a new method getFirstName;
-         	employees[i].age = Integer.valueOf(str[2]);
-         	employees[i].salary = Double.valueOf(str[3]);
+         	employees[i].setID(Integer.valueOf(str[0]));
+         	employees[i].setFirstName(str[1]); 
+         	employees[i].setAge(Integer.valueOf(str[2]));
+         	employees[i].setSalary(Double.valueOf(str[3]));
          }
          
          return employees;
