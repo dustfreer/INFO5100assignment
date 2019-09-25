@@ -70,14 +70,10 @@ public class assignment2 {
     */
     public void swap(Employee firstEmployee, Employee secondEmployee) {
         // @TODO
-    	double temp;
     	double firstSalary = firstEmployee.getSalary();
     	double SecondSalary = secondEmployee.getSalary();
-    	temp = firstSalary;
-    	firstSalary = SecondSalary;
-    	SecondSalary = temp;
-    	firstEmployee.setSalary(firstSalary);
-    	secondEmployee.setSalary(SecondSalary);
+    	firstEmployee.setSalary(SecondSalary);
+    	secondEmployee.setSalary(firstSalary);
     }
 
     
