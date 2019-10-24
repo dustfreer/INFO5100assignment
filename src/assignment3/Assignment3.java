@@ -1,6 +1,6 @@
 package assignment3;
 
-public class assignment3 {
+public class Assignment3 {
 	/*
 	 * Q5, count-and-say sequence;
 	 * Designed by Kai Tian;

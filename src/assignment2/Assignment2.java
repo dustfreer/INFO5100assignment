@@ -6,7 +6,7 @@ import assignment2.Employee;
  * Designed by Kai Tian;
  */
 
-public class assignment2 {
+public class Assignment2 {
 	
     /*
         This method should return the sum of salaries of employees having salary greater than 5000

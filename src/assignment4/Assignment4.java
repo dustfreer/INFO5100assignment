@@ -1,6 +1,6 @@
 package assignment4;
 
-public class assignment4 {
+public class Assignment4 {
 
 	/*
 	 * Q4, return AB;
