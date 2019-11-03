@@ -71,7 +71,8 @@ public class Assignment6 {
 	static class MyHashMap {
 		int[] arr = new int[1000001];
 	    public MyHashMap() {
-	        for ( int i = 0; i < arr.length; i++) arr[i] = -1;
+	        for ( int i = 0; i < arr.length; i++) 
+	        	arr[i] = -1;
 	    }
 	    
 	    public void put(int key, int value) {

@@ -1,0 +1,5 @@
+file1.txt Numbers of line 3
+/Users/tiankai/eclipse/eclipse-workspace/INFO5100/LineCount/file2.txt (No such file or directory)file2.txt Numbers of line 0
+file1.txt Numbers of line 3
+file2.txt Numbers of line 3
+file3.txt Numbers of line 7

@@ -1,0 +1,6 @@
+Write a program that read sentences from a file and reverse sentences word by word. 
+After reverse, create a new file to save sentences. 
+Extreme corner case is not mandatory.
+
+Input file: the sky is blue.
+Output file: blue is sky the.

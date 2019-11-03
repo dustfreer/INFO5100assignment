@@ -1,0 +1,6 @@
+word by word sentences reverse and file a from sentences read that program a Write.
+sentences save to file new a create reverse After.
+mandatory not is case corner Extreme.
+.
+blue is sky the file: Input.
+the sky is blue file: Output.
