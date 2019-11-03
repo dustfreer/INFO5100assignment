@@ -121,7 +121,7 @@ public class Assignment7 {
 	 */
 	
 	public static void listFilesForFolder(File folder) throws IOException {
-		String filepath = "/Users/tiankai/eclipse/eclipse-workspace/INFO5100/LineCount/";
+		String filepath = "/Users/tiankai/eclipse/eclipse-workspace/INFO5100/assignment7/LineCount/";
 	    for (int i = 1; i <=3; i++) {
 	    	File file = new File(filepath + "file" + String.valueOf(i)+".txt");	            
             File outputFile = new File(filepath +"LineCounts.txt");
